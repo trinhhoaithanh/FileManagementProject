@@ -8,25 +8,22 @@ import java.time.LocalDateTime;
 
 @Entity
 @Getter @Setter
-public class SharedFile {
+public class SharedFileInGroup {
     @Id @GeneratedValue
-    @Column(name = "shared_file_id")
+    @Column(name = "shared_file_in_group_id")
     private Long id;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
 
     @ManyToOne
     @JoinColumn(name = "file_id")
     private File file;
 
     @ManyToOne
-    @JoinColumn(name = "group_user_id")
-    private GroupUser groupUser;
+    @JoinColumn(name = "group_id")
+    private Group group;
+
+
 
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
-
 }

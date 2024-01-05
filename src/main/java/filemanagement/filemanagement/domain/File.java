@@ -26,10 +26,13 @@ public class File {
     private User user;
 
     @OneToMany(mappedBy = "file")
-    private List<SharedFile> sharedFileList = new ArrayList<>();
+    private List<SharedFileUser> sharedFileUserList = new ArrayList<>();
 
     @OneToMany(mappedBy = "file")
     private List<SavedFile> savedFiles = new ArrayList<>();
+
+    @OneToMany(mappedBy = "file")
+    private List<SavedFile> sharedFileInGroupList = new ArrayList<>();
 
     @Enumerated(EnumType.STRING)
     private FileStatus status;

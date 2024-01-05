@@ -22,7 +22,7 @@ public class User {
     public UserRole role;
 
     @OneToMany(mappedBy = "user")
-    public List<SharedFile> sharedFiles = new ArrayList<>();
+    public List<SharedFileUser> sharedFileUsers = new ArrayList<>();
 
     @OneToMany(mappedBy = "user")
     public List<File> files = new ArrayList<>();

@@ -4,14 +4,13 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter @Setter
-public class GroupUser {
+public class SharedFileUser {
     @Id @GeneratedValue
-    @Column(name = "group_user_id")
+    @Column(name = "shared_file_id")
     private Long id;
 
     @ManyToOne
@@ -19,6 +18,11 @@ public class GroupUser {
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "group_id")
-    private Group group;
+    @JoinColumn(name = "file_id")
+    private File file;
+
+    private LocalDateTime createdAt;
+
+    private LocalDateTime updatedAt;
+
 }

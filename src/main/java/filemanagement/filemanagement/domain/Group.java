@@ -19,4 +19,6 @@ public class Group {
     @OneToMany(mappedBy = "group")
     private List<GroupUser> groupUsers = new ArrayList<>();
 
+    @OneToMany(mappedBy = "group")
+    private List<SharedFileInGroup> sharedFileInGroupList = new ArrayList<>();
 }
