@@ -9,6 +9,7 @@ import java.util.List;
 
 @Entity
 @Getter @Setter
+@Table(name = "groups")
 public class Group {
     @Id @GeneratedValue
     @Column(name = "group_id")
@@ -16,7 +17,7 @@ public class Group {
 
     private String groupName;
 
-    @OneToMany(mappedBy = "group")
+    @OneToMany(mappedBy = "groupUser")
     private List<GroupUser> groupUsers = new ArrayList<>();
 
     @OneToMany(mappedBy = "group")

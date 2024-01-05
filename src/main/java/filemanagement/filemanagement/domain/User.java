@@ -9,27 +9,28 @@ import java.util.List;
 
 @Entity
 @Getter @Setter
+@Table(name = "users")
 public class User {
     @Id @GeneratedValue
     @Column(name = "user_id")
-    public Long id;
+    private Long id;
 
-    public String email;
+    private String email;
 
-    public String password;
+    private String password;
 
     @Enumerated(EnumType.STRING)
-    public UserRole role;
+    private UserRole role;
 
     @OneToMany(mappedBy = "user")
-    public List<SharedFileUser> sharedFileUsers = new ArrayList<>();
+    private List<SharedFileUser> sharedFileUsers = new ArrayList<>();
 
     @OneToMany(mappedBy = "user")
-    public List<File> files = new ArrayList<>();
+    private List<File> files = new ArrayList<>();
 
     @OneToMany(mappedBy = "user")
-    public List<SavedFile> savedFies = new ArrayList<>();
+    private List<SavedFile> savedFies = new ArrayList<>();
 
     @OneToMany(mappedBy = "user")
-    public List<GroupUser> groupUserList;
+    private List<GroupUser> groupUserList;
 }

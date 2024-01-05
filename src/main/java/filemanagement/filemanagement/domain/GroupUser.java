@@ -20,5 +20,5 @@ public class GroupUser {
 
     @ManyToOne
     @JoinColumn(name = "group_id")
-    private Group group;
+    private Group groupUser;
 }

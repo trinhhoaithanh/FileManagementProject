@@ -22,7 +22,6 @@ public class SharedFileInGroup {
     private Group group;
 
 
-
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
