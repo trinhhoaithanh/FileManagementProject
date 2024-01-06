@@ -21,6 +21,8 @@ public class File {
 
     private String path;
 
+    private String description;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -32,7 +34,7 @@ public class File {
     private List<SavedFile> savedFiles = new ArrayList<>();
 
     @OneToMany(mappedBy = "file")
-    private List<SavedFile> sharedFileInGroupList = new ArrayList<>();
+    private List<SharedFileInGroup> sharedFileInGroupList = new ArrayList<>();
 
     @Enumerated(EnumType.STRING)
     private FileStatus status;
