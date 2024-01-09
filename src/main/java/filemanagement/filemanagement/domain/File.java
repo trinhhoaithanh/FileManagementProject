@@ -40,13 +40,13 @@ public class File {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "file")
+    @OneToMany(mappedBy = "file",cascade = CascadeType.ALL)
     private List<SharedFileUser> sharedFileUserList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "file")
+    @OneToMany(mappedBy = "file",cascade = CascadeType.ALL)
     private List<SavedFile> savedFiles = new ArrayList<>();
 
-    @OneToMany(mappedBy = "file")
+    @OneToMany(mappedBy = "file",cascade = CascadeType.ALL)
     private List<SharedFileInGroup> sharedFileInGroupList = new ArrayList<>();
 
     @Enumerated(EnumType.STRING)
