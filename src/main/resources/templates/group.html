@@ -253,36 +253,13 @@
             </div>
           </div>
 
-          <div class="folder-container row">
-            <div class="folder col-3" onclick="openFolder(this)">
+          <div class="folder-container row" th:each="group1:${groups}">
+            <a th:href="@{/groups/{groupId}(groupId = ${group1.id})}">
+            <div class="folder col-3" >
               <div class="folder-icon">📂</div>
-              <div class="folder-name">Group 1</div>
+              <div class="folder-name" th:text="${group1.groupUser.groupName}">Group 1</div>
             </div>
-
-            <div class="folder col-3" onclick="openFolder(this)">
-              <div class="folder-icon">📂</div>
-              <div class="folder-name">Group 1</div>
-            </div>
-
-            <div class="folder col-3" onclick="openFolder(this)">
-              <div class="folder-icon">📂</div>
-              <div class="folder-name">Group 1</div>
-            </div>
-
-            <div class="folder col-3" onclick="openFolder(this)">
-              <div class="folder-icon">📂</div>
-              <div class="folder-name">Group 1</div>
-            </div>
-
-            <div class="folder col-3" onclick="openFolder(this)">
-              <div class="folder-icon">📂</div>
-              <div class="folder-name">Group 1</div>
-            </div>
-
-            <div class="folder col-3" onclick="openFolder(this)">
-              <div class="folder-icon">📂</div>
-              <div class="folder-name">Group 1</div>
-            </div>
+            </a>
           </div>
         </div>
       </div>

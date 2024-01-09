@@ -34,13 +34,13 @@ public class User {
     private List<SharedFileUser> sharedFileUsers = new ArrayList<>();
 
     @OneToMany(mappedBy = "user")
-    @MapKey(name = "file_id")
+    @MapKey(name = "id")
     private Map<Long,File> files = new HashMap<>();
 
     @OneToMany(mappedBy = "user")
     private List<SavedFile> savedFies = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<GroupUser> groupUserList;
 
     public void addFileToUser(File file){
