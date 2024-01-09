@@ -14,15 +14,15 @@ public class GroupController {
     @Autowired
     private GroupService groupService;
 
-    @GetMapping("/groups")
+    @GetMapping("/group")
     public String createGroupForm(Model model){
         model.addAttribute("group", new Group());
         return "group";
     }
 
-    @PostMapping("/groups/new")
+    @PostMapping("/group")
     public String createGroup(@ModelAttribute("group") Group group) {
         groupService.createAGroup(group.getGroupName());
-        return "redirect:/groups";
+        return "redirect:/group";
     }
 }

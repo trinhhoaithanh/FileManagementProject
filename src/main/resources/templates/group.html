@@ -236,7 +236,7 @@
                       <button type="button"  onclick="closeModal()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body my-3">
-                      <form th:action="@{/groups/new}" method="post" th:object="${group}">
+                      <form th:action="@{/group}" method="post" th:object="${group}">
                         <div class="input-group mb-3">
                           <label class="input-group-text" for="groupName">Group Name</label>
                           <input class="form-control" type="text" id="groupName" name="groupName" th:field="*{groupName}" required/><br/>
@@ -254,35 +254,12 @@
           </div>
 
           <div class="folder-container row">
-            <div class="folder col-3" onclick="openFolder(this)">
+            <div th:each="group : ${groups}" class="folder col-3" onclick="openFolder(this)">
               <div class="folder-icon">📂</div>
-              <div class="folder-name">Group 1</div>
+              <div th:text="${group.groupName}" class="folder-name">Group 1</div>
             </div>
 
-            <div class="folder col-3" onclick="openFolder(this)">
-              <div class="folder-icon">📂</div>
-              <div class="folder-name">Group 1</div>
-            </div>
 
-            <div class="folder col-3" onclick="openFolder(this)">
-              <div class="folder-icon">📂</div>
-              <div class="folder-name">Group 1</div>
-            </div>
-
-            <div class="folder col-3" onclick="openFolder(this)">
-              <div class="folder-icon">📂</div>
-              <div class="folder-name">Group 1</div>
-            </div>
-
-            <div class="folder col-3" onclick="openFolder(this)">
-              <div class="folder-icon">📂</div>
-              <div class="folder-name">Group 1</div>
-            </div>
-
-            <div class="folder col-3" onclick="openFolder(this)">
-              <div class="folder-icon">📂</div>
-              <div class="folder-name">Group 1</div>
-            </div>
           </div>
         </div>
       </div>
@@ -303,7 +280,7 @@
     <script>
       function openFolder(folder) {
         // Thực hiện chuyển hướng trang web khi double click vào folder
-        window.location.href = "sub-group.html";
+        window.location.href = "sub-group";
       }
     </script>
 
