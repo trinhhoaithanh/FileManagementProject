@@ -13,7 +13,7 @@ public class SharedFileInGroup {
     @Column(name = "shared_file_in_group_id")
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "file_id")
     private File file;
 
