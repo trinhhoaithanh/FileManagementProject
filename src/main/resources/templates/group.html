@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
   <head>
     <title>Title</title>
     <!-- Required meta tags -->
@@ -236,20 +236,17 @@
                       <button type="button"  onclick="closeModal()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body my-3">
-                      <div class="input-group mb-3">
-                        <span class="input-group-text">Group name</span>
-                        <input type="text" aria-label="First name" class="form-control"> 
-                      </div>
+                      <form th:action="@{/groups/new}" method="post" th:object="${group}">
+                        <div class="input-group mb-3">
+                          <label class="input-group-text" for="groupName">Group Name</label>
+                          <input class="form-control" type="text" id="groupName" name="groupName" th:field="*{groupName}" required/><br/>
+                        </div>
+                        <button type="submit" value="Create Group" class="btn btn-primary">Create</button>
+                      </form>
 
-                      <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Username" aria-label="username" aria-describedby="button-addon2">
-                        <button class="btn btn-success" type="button" id="button-addon2">Add member</button>
-                      </div>
+
                     </div>
-                    <div class="modal-footer">
-                      <button type="button" onclick="closeModal()" class="btn btn-secondary me-2" data-bs-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary">Create</button>
-                    </div>
+
                   </div>
                 </div>  
               </div>

@@ -9,6 +9,7 @@ import java.util.List;
 
 @Entity
 @Getter @Setter
+//@Table(name = "groups1") su dung cho mysql
 @Table(name = "groups")
 public class Group {
     @Id @GeneratedValue
