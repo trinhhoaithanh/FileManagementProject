@@ -34,6 +34,7 @@ public class User {
     private List<SharedFileUser> sharedFileUsers = new ArrayList<>();
 
     @OneToMany(mappedBy = "user")
+    @MapKey(name = "file_id")
     private Map<Long,File> files = new HashMap<>();
 
     @OneToMany(mappedBy = "user")
