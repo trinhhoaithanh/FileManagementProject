@@ -1,11 +1,14 @@
 package filemanagement.filemanagement.controller;
 
 import filemanagement.filemanagement.domain.File;
+import filemanagement.filemanagement.domain.User;
 import filemanagement.filemanagement.service.FileService;
+import filemanagement.filemanagement.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -14,14 +17,18 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.security.Principal;
 
 @Controller
 public class FileController {
 
     private final FileService fileService;
+
+    private final UserService userService;
     @Autowired
-    public FileController(FileService fileService) {
+    public FileController(FileService fileService, UserService userService) {
         this.fileService = fileService;
+        this.userService = userService;
     }
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
@@ -39,7 +46,7 @@ public class FileController {
 
     @RequestMapping("/download/{fileId}")
 //    @ResponseBody
-    public void downloadFile(HttpServletRequest request, HttpServletResponse response, @PathVariable("fileId") Integer fileId) throws FileNotFoundException {
+    public void downloadFile(HttpServletRequest request, HttpServletResponse response, @PathVariable("fileId") Long fileId) throws FileNotFoundException {
 //        String path = fileService.getFileById(fileId).getFilePath();
 //        File file = new File()
 //        InputStreamResource resource = new InputStreamResource(new FileInputStream())
@@ -58,5 +65,31 @@ public class FileController {
                 throw new RuntimeException(e);
             }
         }
+    }
+
+    @GetMapping("/delete/{fileId}") // dang le phai su dung DeleteMapping, nhung bi loi
+    public String deleteFile(@PathVariable("fileId") Long fileId){
+        File file = fileService.getFileById(fileId);
+        fileService.delete(file);
+        return "redirect:/home";
+    }
+
+    @PostMapping("/share")
+    public String shareFileInUser(@RequestParam("sharedFileId") Long fileId, @RequestParam("email") String email){
+        File file = fileService.getFileById(fileId);
+        User user = userService.getUserByEmail(email);
+
+        fileService.shareFileWithUser(file,user);
+
+        return "redirect:/sharedFiles";
+    }
+
+    @GetMapping("/sharedFiles")
+    public String filesShared(Principal principal, Model model){
+        String email = principal.getName();
+        User user = userService.getUserByEmail(email);
+        model.addAttribute("userId", user.getId());
+        model.addAttribute("files", user.getSharedFileUsers());
+        return "sharedFiles";
     }
 }

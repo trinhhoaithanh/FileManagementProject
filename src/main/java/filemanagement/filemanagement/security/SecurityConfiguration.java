@@ -35,8 +35,8 @@ public class SecurityConfiguration   {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.userDetailsService(userDetailsService).csrf(csrf->csrf.disable())
                 .authorizeHttpRequests(auth->auth.requestMatchers("/login","/signup").permitAll())
-                .authorizeHttpRequests(auth->auth.requestMatchers("/home","/").hasAuthority("USER").anyRequest().authenticated())
-                .formLogin(form -> form.loginPage("/login").defaultSuccessUrl("/").failureForwardUrl("/failed_login"))
+                .authorizeHttpRequests(auth->auth.requestMatchers("/home","/","/download/**","/delete/**").hasAuthority("USER").anyRequest().authenticated())
+                .formLogin(form -> form.loginPage("/login").defaultSuccessUrl("/").failureForwardUrl("/login"))
                 .logout(out -> out.logoutSuccessUrl("/login"));
 
         return http.build();

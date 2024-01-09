@@ -137,10 +137,8 @@
           <a class="home text-center mt-5" href="home.html"
             ><i class="fa fa-home text-center bg-light p-4"></i
           ></a>
-
           <a class="people text-light text-center mt-5" href="groups"><i class="fa fa-users"></i></a>
           <a class="people text-light text-center mt-5" th:href="@{/sharedFiles}"><i class="fa fa-users"></i></a>
-
           <a class="save text-light text-center mt-5" href="save"><i class="fa fa-save"></i></a>
           <a class="log-out text-light text-center mt-5" th:href="@{/logout}"
             ><i class="fa fa-sign-out-alt"></i
@@ -228,13 +226,12 @@
           <tr th:each="file:${files}">
           <div class="row file mt-4">
             <input type="hidden"  name="userId" th:value="${userId}">
-            <input type="hidden"  name="fileId" th:value="${file.id}">
-            <div th:text="${file.fileName}" class="col-3">File 1</div>
-            <div th:text="${file.description}" class="col-3">Day la mo ta</div>
-            <div th:text="${file.createdAt}" class="col-3">Ngay upload</div>
+            <div th:text="${file.file.fileName}" class="col-3">File 1</div>
+            <div th:text="${file.file.description}" class="col-3">Day la mo ta</div>
+            <div th:text="${file.file.createdAt}" class="col-3">Ngay upload</div>
             <div class="col-3">
 
-                <a target="_blank" th:href="@{/download/{fileId}(fileId = ${file.id})}" >
+                <a target="_blank" th:href="@{/download/{fileId}(fileId = ${file.file.id})}" >
                   <button class="mx-1 btn btn-primary btn-download">
                     <i class="fa fa-download"></i>
                   </button>
@@ -243,7 +240,7 @@
               <button class="mx-1 btn btn-warning btn-save">
                 <i class="text-white fa fa-save"></i>
               </button>
-              <a target="_blank" th:href="@{/delete/{fileId}(fileId = ${file.id})}" >
+              <a target="_blank" th:href="@{/delete/{fileId}(fileId = ${file.file.id})}" >
               <button class="mx-1 btn btn-danger btn-delete">
                 <i class="fa fa-trash"></i>
               </button>
@@ -256,7 +253,7 @@
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <form th:action="@{/share}" method="post">
-                      <input type="hidden" th:value="${file.id}" name="sharedFileId">
+                      <input type="hidden" th:value="${file.id}" name="fileId">
                     <div class="modal-header">
                       <h1 class="modal-title fs-5" id="exampleModalLabel">Share File</h1>
                       <button type="button"  onclick="closeShareModal()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -297,7 +294,6 @@
     ></script>
 
     <script>
-
       function openModal() {
         var modal = document.getElementById("myModal");
         modal.style.display = "flex";
@@ -306,8 +302,6 @@
       function openShareModal() {
         var modal = document.getElementById("shareModel");
         modal.style.display = "flex";
-<!--        var a = document.getElementsByName("fileId").value;-->
-<!--        document.getElementByName("sharedFileId").value=a-->
       }
 
       function closeShareModal() {

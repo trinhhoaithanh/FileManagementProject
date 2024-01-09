@@ -14,11 +14,11 @@ public class GroupUser {
     @Column(name = "group_user_id")
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "group_id")
     private Group groupUser;
 }
